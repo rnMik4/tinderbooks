@@ -1,14 +1,23 @@
 package br.com.rnrafa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "usuarios")
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class Usuarios {
+public class Usuarios implements Serializable {
+
+	@Serial
+	private static final long serialVersionUID = -953232830039426792L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,6 +67,14 @@ public class Usuarios {
 	
 	@Column(name = "senha", nullable = false, length = 80)
 	private String senha;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "usuario")
+	private List<Avaliacoes> avaliacoesList = new ArrayList<>();
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "usuario")
+	private List<LivrosUsuario> livrosList = new ArrayList<>();
 
 	public String getSenha() {
 		return senha;
@@ -187,8 +204,20 @@ public class Usuarios {
 	public void setAceiteTermos(String aceiteTermos) {
 		this.aceiteTermos = aceiteTermos;
 	}
-	
-	
-	
 
+	public List<Avaliacoes> getAvaliacoesList() {
+		return avaliacoesList;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Usuarios usuarios)) return false;
+        return Objects.equals(id, usuarios.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(id);
+	}
 }
