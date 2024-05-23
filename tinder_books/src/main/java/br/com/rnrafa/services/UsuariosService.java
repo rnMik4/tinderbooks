@@ -3,8 +3,10 @@ package br.com.rnrafa.services;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import br.com.rnrafa.exceptions.DatabaseException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import br.com.rnrafa.dto.UsuariosRequestDTO;
@@ -50,16 +52,25 @@ public class UsuariosService {
 				.orElseThrow(() -> new ResourceNotFoundException("Usuario não encontrado"));
 		
 		BeanUtils.copyProperties(usuarioDTO, entity);
-		
 		entity.setId(id);
-		
-		return mapper.entidadeParaDTO(repository.save(entity), UsuariosResponseDTO.class);
+
+		try {
+			return mapper.entidadeParaDTO(repository.save(entity), UsuariosResponseDTO.class);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new DatabaseException("Não foi possível atualizar o usuário de id " + id + ". " + e.getMessage());
+		}
 	}
 	
 	public void delete(Long id) {
 		Usuarios entity = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("User not found!"));
-		repository.delete(entity);
+		try {
+			repository.delete(entity);
+		} catch (DataIntegrityViolationException ex) {
+			ex.printStackTrace();
+			throw new DatabaseException("Não foi possível excluir o cadastro do usuário de id " + id + ". " + ex.getMessage());
+		}
 	}
 	
 	public UsuariosResponseDTO login(String email, String senha) {

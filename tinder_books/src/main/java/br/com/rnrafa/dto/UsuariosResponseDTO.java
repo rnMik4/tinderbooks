@@ -2,8 +2,6 @@ package br.com.rnrafa.dto;
 
 import java.time.LocalDateTime;
 
-import br.com.rnrafa.entity.Preferencias;
-
 public class UsuariosResponseDTO {
 	private Long id;
 	private LocalDateTime datacriacao;
@@ -20,16 +18,8 @@ public class UsuariosResponseDTO {
 	private String telefone;
 	private String ativo;
 	private String aceiteTermos;
-	private Preferencias preferencias;
 	
 	
-	
-	public Preferencias getPreferencias() {
-		return preferencias;
-	}
-	public void setPreferencias(Preferencias preferencias) {
-		this.preferencias = preferencias;
-	}
 	public String getNomeCompleto() {
 		return nomeCompleto;
 	}
