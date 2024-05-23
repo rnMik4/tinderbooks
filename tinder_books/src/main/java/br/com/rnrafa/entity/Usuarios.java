@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "usuarios")
@@ -58,6 +59,19 @@ public class Usuarios {
 	
 	@Column(name = "senha", nullable = false, length = 80)
 	private String senha;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@PrimaryKeyJoinColumn
+    //@JoinColumn(name = "idUsuario", referencedColumnName = "id")
+	private Preferencias preferencias;
+
+	public Preferencias getPreferencias() {
+		return preferencias;
+	}
+
+	public void setPreferencias(Preferencias preferencias) {
+		this.preferencias = preferencias;
+	}
 
 	public String getSenha() {
 		return senha;
