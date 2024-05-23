@@ -1,9 +1,5 @@
 package br.com.rnrafa.dto;
 
-import java.time.LocalDateTime;
-
-import jakarta.persistence.Column;
-
 public class UsuariosRequestDTO {
 	private String email;
 	private String nomeCompleto;

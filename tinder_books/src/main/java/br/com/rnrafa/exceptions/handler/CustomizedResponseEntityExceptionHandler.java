@@ -2,6 +2,7 @@ package br.com.rnrafa.exceptions.handler;
 
 import java.util.Date;
 
+import br.com.rnrafa.exceptions.DatabaseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -18,8 +19,7 @@ import br.com.rnrafa.exceptions.ResourceNotFoundException;
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler{
 
 	@ExceptionHandler(ResourceNotFoundException.class)
-	public final ResponseEntity<ExceptionResponse> handleNotFoundExceptions(
-			Exception ex, WebRequest request){
+	public final ResponseEntity<ExceptionResponse> handleNotFoundExceptions(Exception ex, WebRequest request){
 		ExceptionResponse exceptionResponse = new ExceptionResponse(
 				new Date(), 
 				ex.getMessage(), 
@@ -27,4 +27,15 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 		
 		return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
 	}
+
+	@ExceptionHandler(DatabaseException.class)
+	public final ResponseEntity<ExceptionResponse> handleDatabaseExceptions(Exception ex, WebRequest request){
+		ExceptionResponse exceptionResponse = new ExceptionResponse(
+				new Date(),
+				ex.getMessage(),
+				request.getDescription(false));
+
+		return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
+	}
+
 }

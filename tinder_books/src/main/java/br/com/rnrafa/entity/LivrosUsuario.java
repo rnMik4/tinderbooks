@@ -104,6 +104,14 @@ public class LivrosUsuario implements Serializable {
         this.descricaoUsuario = descricaoUsuario;
     }
 
+    public Usuarios getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuarios usuario) {
+        this.usuario = usuario;
+    }
+
     public MotivosDenuncias getMotivoDenuncia() {
         return motivoDenuncia;
     }
