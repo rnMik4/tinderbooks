@@ -4,7 +4,8 @@ import br.com.rnrafa.entity.Preferencias;
 
 import java.time.LocalDateTime;
 
-public class UsuariosResponseDTO {
+public class
+UsuariosResponseDTO {
 	private Long id;
 	private LocalDateTime datacriacao;
 	private String nomeCompleto;
