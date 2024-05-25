@@ -66,10 +66,18 @@ public class Usuarios implements Serializable {
 	
 	@Column(name = "senha", nullable = false, length = 80)
 	private String senha;
+
+	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "usuarioOwner")
+	private Likes usuarioOwner;
+
+	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "usuarioInteracao")
+	private Likes usuarioInteracao;
+
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn
-    //@JoinColumn(name = "idUsuario", referencedColumnName = "id")
 	private Preferencias preferencias;
 
 	public Preferencias getPreferencias() {

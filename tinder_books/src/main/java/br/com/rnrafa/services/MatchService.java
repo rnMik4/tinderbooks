@@ -31,11 +31,11 @@ public class MatchService {
 
     public MatchResponseDTO findById(Long id) {
         Matchs entity = repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Usuario não encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("Match não encontrado"));
         return mapper.entidadeParaDTO(entity, MatchResponseDTO.class);
     }
 
-    public MatchResponseDTO create(MatchResponseDTO matchDto) {
+    public MatchResponseDTO create(MatchRequestDTO matchDto) {
 
         Matchs matchSalvar = new Matchs();
         BeanUtils.copyProperties(matchDto, matchSalvar);
@@ -45,7 +45,7 @@ public class MatchService {
 
     public MatchResponseDTO update(MatchRequestDTO matchDto, Long id) {
         Matchs entity = repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Usuario não encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("Match não encontrado"));
 
         BeanUtils.copyProperties(matchDto, entity);
 
@@ -56,8 +56,12 @@ public class MatchService {
 
     public void delete(Long id) {
         Matchs entity = repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found!"));
+                .orElseThrow(() -> new ResourceNotFoundException("Match não encontrado!"));
         repository.delete(entity);
+    }
+
+    public List<MatchResponseDTO> matchsUsuario(Long id){
+        return mapper.entidadeParaDTO(repository.findByIdUsuarioIOrIdUsuarioII(id, id), MatchResponseDTO.class);
     }
 
 }

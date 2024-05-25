@@ -4,17 +4,18 @@ import java.time.LocalDateTime;
 
 public class GeneroResponseDTO {
 
+    private Long id;
     private LocalDateTime datacriacao;
     private String genero;
     private String ativo;
 
-
-    public GeneroResponseDTO(LocalDateTime datacriacao, String genero, String ativo) {
-        this.datacriacao = datacriacao;
-        this.genero = genero;
-        this.ativo = ativo;
+    public String getAtivo() {
+        return ativo;
     }
 
+    public void setAtivo(String ativo) {
+        this.ativo = ativo;
+    }
 
     public LocalDateTime getDatacriacao() {
         return datacriacao;
@@ -32,11 +33,11 @@ public class GeneroResponseDTO {
         this.genero = genero;
     }
 
-    public String getAtivo() {
-        return ativo;
+    public Long getId() {
+        return id;
     }
 
-    public void setAtivo(String ativo) {
-        this.ativo = ativo;
+    public void setId(Long id) {
+        this.id = id;
     }
 }

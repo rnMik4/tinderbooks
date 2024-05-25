@@ -6,18 +6,10 @@ import java.time.LocalDateTime;
 
 public class MatchResponseDTO {
 
+    private Long id;
     private LocalDateTime dataCriacao;
-
-    private Long id_usuario_i;
-
-    private Long getId_usuario_ii;
-
-
-    public MatchResponseDTO(LocalDateTime dataCriacao, Long id_usuario_i, Long getId_usuario_ii) {
-        this.dataCriacao = dataCriacao;
-        this.id_usuario_i = id_usuario_i;
-        this.getId_usuario_ii = getId_usuario_ii;
-    }
+    private Long idUsuarioI;
+    private Long idUsuarioII;
 
     public LocalDateTime getDataCriacao() {
         return dataCriacao;
@@ -27,19 +19,27 @@ public class MatchResponseDTO {
         this.dataCriacao = dataCriacao;
     }
 
-    public Long getId_usuario_i() {
-        return id_usuario_i;
+    public Long getId() {
+        return id;
     }
 
-    public void setId_usuario_i(Long id_usuario_i) {
-        this.id_usuario_i = id_usuario_i;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Long getGetId_usuario_ii() {
-        return getId_usuario_ii;
+    public Long getIdUsuarioI() {
+        return idUsuarioI;
     }
 
-    public void setGetId_usuario_ii(Long getId_usuario_ii) {
-        this.getId_usuario_ii = getId_usuario_ii;
+    public void setIdUsuarioI(Long idUsuarioI) {
+        this.idUsuarioI = idUsuarioI;
+    }
+
+    public Long getIdUsuarioII() {
+        return idUsuarioII;
+    }
+
+    public void setIdUsuarioII(Long idUsuarioII) {
+        this.idUsuarioII = idUsuarioII;
     }
 }

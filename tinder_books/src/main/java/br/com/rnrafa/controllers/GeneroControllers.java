@@ -23,8 +23,8 @@ public class GeneroControllers {
 
     @GetMapping("/list")
     public ResponseEntity<List<GeneroResponseDTO>> listarGenero(){
-        List list = service.findAll();
-        return ResponseEntity.ok().body(list);
+
+        return ResponseEntity.ok().body(service.findAll());
 
     }
 

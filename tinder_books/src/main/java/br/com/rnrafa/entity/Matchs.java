@@ -16,21 +16,19 @@ public class Matchs {
     @Column(name = "dataCriacao", nullable = false, length = 80)
     private LocalDateTime dataCriacao;
 
-    @Column(name = "usuario_1", nullable = false, length = 80)
-    private Long id_usuario_i;
+    @Column(name = "id_usuario_i", nullable = false, length = 80)
+    private Long idUsuarioI;
 
-    @Column(name = "usuario_ii", nullable = false, length = 80)
-    private Long getId_usuario_ii;
+    @Column(name = "id_usuario_ii", nullable = false, length = 80)
+    private Long idUsuarioII;
 
 
-    public Matchs() {
+    public LocalDateTime getDataCriacao() {
+        return dataCriacao;
     }
 
-    public Matchs(Long id, LocalDateTime dataCriacao, Long id_usuario_i, Long getId_usuario_ii) {
-        this.id = id;
+    public void setDataCriacao(LocalDateTime dataCriacao) {
         this.dataCriacao = dataCriacao;
-        this.id_usuario_i = id_usuario_i;
-        this.getId_usuario_ii = getId_usuario_ii;
     }
 
     public Long getId() {
@@ -41,27 +39,19 @@ public class Matchs {
         this.id = id;
     }
 
-    public LocalDateTime getDataCriacao() {
-        return dataCriacao;
+    public Long getIdUsuarioI() {
+        return idUsuarioI;
     }
 
-    public void setDataCriacao(LocalDateTime dataCriacao) {
-        this.dataCriacao = dataCriacao;
+    public void setIdUsuarioI(Long idUsuarioI) {
+        this.idUsuarioI = idUsuarioI;
     }
 
-    public Long getId_usuario_i() {
-        return id_usuario_i;
+    public Long getIdUsuarioII() {
+        return idUsuarioII;
     }
 
-    public void setId_usuario_i(Long id_usuario_i) {
-        this.id_usuario_i = id_usuario_i;
-    }
-
-    public Long getGetId_usuario_ii() {
-        return getId_usuario_ii;
-    }
-
-    public void setGetId_usuario_ii(Long getId_usuario_ii) {
-        this.getId_usuario_ii = getId_usuario_ii;
+    public void setIdUsuarioII(Long idUsuarioII) {
+        this.idUsuarioII = idUsuarioII;
     }
 }

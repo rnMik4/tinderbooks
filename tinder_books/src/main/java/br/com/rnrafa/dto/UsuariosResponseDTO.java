@@ -1,8 +1,10 @@
 package br.com.rnrafa.dto;
 
+import br.com.rnrafa.entity.LivrosUsuario;
 import br.com.rnrafa.entity.Preferencias;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class
 UsuariosResponseDTO {
@@ -22,6 +24,16 @@ UsuariosResponseDTO {
 	private String ativo;
 	private String aceiteTermos;
 	private Preferencias preferencias;
+
+	private List<LivrosUsuario> livrosList;
+
+	public List<LivrosUsuario> getLivrosList() {
+		return livrosList;
+	}
+
+	public void setLivrosList(List<LivrosUsuario> livrosList) {
+		this.livrosList = livrosList;
+	}
 
 	public Preferencias getPreferencias() {
 		return preferencias;

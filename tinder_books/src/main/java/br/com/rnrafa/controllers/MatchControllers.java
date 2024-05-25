@@ -19,31 +19,34 @@ public class MatchControllers {
     private MatchService service;
 
     @GetMapping("/list")
-    public ResponseEntity<List<MatchResponseDTO>> listarGenero(){
-        List list = service.findAll();
-        return ResponseEntity.ok().body(list);
+    public ResponseEntity<List<MatchResponseDTO>> listarMatchs(){
+        return ResponseEntity.ok().body(service.findAll());
 
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<MatchResponseDTO> IdGenero(@PathVariable Long id){
-        MatchResponseDTO dto = service.findById(id);
-        return ResponseEntity.ok().body(dto);
+    public ResponseEntity<MatchResponseDTO> getMatchById(@PathVariable Long id){
+        return ResponseEntity.ok().body(service.findById(id));
     }
 
     @PostMapping
-    public ResponseEntity<MatchResponseDTO> novoUsuario(@RequestBody MatchResponseDTO matchDTO) {
+    public ResponseEntity<MatchResponseDTO> novoMatch(@RequestBody MatchRequestDTO matchDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(matchDTO));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MatchResponseDTO> atualizarUsuario(@RequestBody MatchRequestDTO matchDTO, @PathVariable("id") Long id) {
+    public ResponseEntity<MatchResponseDTO> atualizarMatch(@RequestBody MatchRequestDTO matchDTO, @PathVariable("id") Long id) {
         return ResponseEntity.ok().body(service.update(matchDTO, id));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletarUsuario(@PathVariable("id") Long id) {
+    public ResponseEntity<String> deletarMatch(@PathVariable("id") Long id) {
         service.delete(id);
-        return ResponseEntity.ok().body("Usuario deletado com sucesso");
+        return ResponseEntity.ok().body("Match deletado com sucesso");
+    }
+
+    @GetMapping("/matchsusuario/{id}")
+    public ResponseEntity<List<MatchResponseDTO>> listarMatchsByUsuario(@PathVariable("id") Long id){
+        return ResponseEntity.ok().body(service.matchsUsuario(id));
     }
 }

@@ -24,17 +24,6 @@ public class Generos {
     private String ativo;
 
 
-    public Generos() {
-    }
-
-    public Generos(Long id, LocalDateTime datacriacao, String genero, String ativo) {
-        this.id = id;
-        this.datacriacao = datacriacao;
-        this.genero = genero;
-        this.ativo = ativo;
-    }
-
-
     public Long getId() {
         return id;
     }
