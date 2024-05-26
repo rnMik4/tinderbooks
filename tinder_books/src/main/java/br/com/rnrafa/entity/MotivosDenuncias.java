@@ -27,7 +27,7 @@ public class MotivosDenuncias implements Serializable {
     private String descricaoMotivoDenuncia;
 
     @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "motivoDenuncia")
+    @OneToOne(mappedBy = "motivoDenuncia")
     private Denuncias denuncia;
 
     public Long getId() {

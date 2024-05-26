@@ -15,6 +15,7 @@ public class Denuncias implements Serializable {
     private static final long serialVersionUID = 8968950718908911608L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "data_criacao", nullable = false)
@@ -32,7 +33,6 @@ public class Denuncias implements Serializable {
 
     @OneToOne
     @JoinColumn(name = "id_motivo_denuncia", referencedColumnName = "id", nullable = false)
-    @MapsId
     private MotivosDenuncias motivoDenuncia;
 
     public Long getId() {
