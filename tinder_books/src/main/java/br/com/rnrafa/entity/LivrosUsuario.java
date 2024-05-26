@@ -1,7 +1,6 @@
 package br.com.rnrafa.entity;
 
 import br.com.rnrafa.entity.utils.BooleanToStringConverter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -43,10 +42,6 @@ public class LivrosUsuario implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_usuario", referencedColumnName = "id", nullable = false)
     private Usuarios usuario;
-
-    @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "livroUsuario")
-    private MotivosDenuncias motivoDenuncia;
 
     public Long getId() {
         return id;
@@ -110,14 +105,6 @@ public class LivrosUsuario implements Serializable {
 
     public void setUsuario(Usuarios usuario) {
         this.usuario = usuario;
-    }
-
-    public MotivosDenuncias getMotivoDenuncia() {
-        return motivoDenuncia;
-    }
-
-    public void setMotivoDenuncia(MotivosDenuncias motivoDenuncia) {
-        this.motivoDenuncia = motivoDenuncia;
     }
 
     @Override
