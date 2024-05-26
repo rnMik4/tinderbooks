@@ -32,10 +32,9 @@ public class AvaliacoesController {
         return ResponseEntity.ok(service.findById(id));
     }
 
-    @PostMapping("/{usuarioId}/{matchId}")
-    public ResponseEntity<AvaliacoesResponseDTO> cadastrarAvaliacao(@RequestBody final AvaliacoesRequestDTO avaliacoesDTO, @PathVariable("usuarioId") final Long usuarioId,
-                                                                    @PathVariable("matchId") final Long matchId) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.create(avaliacoesDTO, usuarioId, matchId));
+    @PostMapping
+    public ResponseEntity<AvaliacoesResponseDTO> cadastrarAvaliacao(@RequestBody final AvaliacoesRequestDTO avaliacoesDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.create(avaliacoesDTO));
     }
 
     @PutMapping("/{id}")

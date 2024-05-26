@@ -42,16 +42,13 @@ public class AvaliacaoService {
                 AvaliacoesResponseDTO.class);
     }
 
-    public AvaliacoesResponseDTO create(final AvaliacoesRequestDTO avaliacaoDTO, final Long usuarioId, final Long matchId) {
+    public AvaliacoesResponseDTO create(final AvaliacoesRequestDTO avaliacaoDTO) {
         Avaliacoes avaliacaoEntidade = new Avaliacoes();
         BeanUtils.copyProperties(avaliacaoDTO, avaliacaoEntidade);
         avaliacaoEntidade.setDataCriacao(new Date());
-        Usuarios usuario = usuarioRepository.findById(usuarioId).
-                orElseThrow(() -> new ResourceNotFoundException("Não foi possível cadastrar a avaliação pois não existe cadastro do usuário de id " + usuarioId));
+        Usuarios usuario = usuarioRepository.findById(avaliacaoDTO.getUsuarioId()).
+                orElseThrow(() -> new ResourceNotFoundException("Não foi possível cadastrar a avaliação pois não existe cadastro do usuário de id " + avaliacaoDTO.getUsuarioId()));
         avaliacaoEntidade.setUsuario(usuario);
-
-        // TODO:  Quando as entidades Like e Match estiverem prontas, trocar o atriburo matchId pelo objeto da entidade na classe.
-        avaliacaoEntidade.setMatchId(matchId);
         return mapper.entidadeParaDTO(repository.save(avaliacaoEntidade), AvaliacoesResponseDTO.class);
     }
 

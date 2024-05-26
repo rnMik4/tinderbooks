@@ -42,15 +42,19 @@ public class LivrosUsuarioService {
                 LivrosUsuarioResponseDTO.class);
     }
 
-    public LivrosUsuarioResponseDTO create(final LivrosUsuarioRequestDTO livroUsuarioDTO, final Long usuarioId) {
+    public LivrosUsuarioResponseDTO create(final LivrosUsuarioRequestDTO livroUsuarioDTO) {
         LivrosUsuario livroEntidade = new LivrosUsuario();
         BeanUtils.copyProperties(livroUsuarioDTO, livroEntidade);
         livroEntidade.setDataCriacao(new Date());
-        Usuarios usuario = usuarioRepository.findById(usuarioId).
-                orElseThrow(() -> new ResourceNotFoundException("Não foi possível realizar o cadastro do livro pois não existe usuário cadastrado com id " + usuarioId));
+        Usuarios usuario = usuarioRepository.findById(livroUsuarioDTO.getUsuarioId()).
+                orElseThrow(() -> new ResourceNotFoundException("Não foi possível realizar o cadastro do livro pois não existe usuário cadastrado com id " + livroUsuarioDTO.getUsuarioId()));
         livroEntidade.setUsuario(usuario);
 
-        return mapper.entidadeParaDTO(repository.save(livroEntidade), LivrosUsuarioResponseDTO.class);
+        try {
+            return mapper.entidadeParaDTO(repository.save(livroEntidade), LivrosUsuarioResponseDTO.class);
+        } catch (Exception e) {
+            throw new DatabaseException("Erro ao cadastrar livro na base de dados. " + e.getMessage());
+        }
     }
 
     public LivrosUsuarioResponseDTO update(LivrosUsuarioRequestDTO livroUsuarioDTO, Long id) {

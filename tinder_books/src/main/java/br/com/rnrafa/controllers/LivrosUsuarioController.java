@@ -32,9 +32,9 @@ public class LivrosUsuarioController {
         return ResponseEntity.ok(service.findById(id));
     }
 
-    @PostMapping("/{usuarioId}")
-    public ResponseEntity<LivrosUsuarioResponseDTO> cadastrarLivro(@RequestBody final LivrosUsuarioRequestDTO livroDTO, @PathVariable("usuarioId") final Long usuarioId) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.create(livroDTO, usuarioId));
+    @PostMapping
+    public ResponseEntity<LivrosUsuarioResponseDTO> cadastrarLivro(@RequestBody final LivrosUsuarioRequestDTO livroDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.create(livroDTO));
     }
 
     @PutMapping("/{id}")
