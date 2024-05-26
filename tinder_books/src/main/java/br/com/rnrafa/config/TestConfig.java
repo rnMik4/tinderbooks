@@ -1,9 +1,6 @@
 package br.com.rnrafa.config;
 
-import br.com.rnrafa.entity.Denuncias;
-import br.com.rnrafa.entity.LivrosUsuario;
-import br.com.rnrafa.entity.MotivosDenuncias;
-import br.com.rnrafa.entity.Usuarios;
+import br.com.rnrafa.entity.*;
 import br.com.rnrafa.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -32,6 +29,9 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private DenunciasRepository denunciasRepository;
+
+    @Autowired
+    private PreferenciasRepository preferenciasRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -242,6 +242,56 @@ public class TestConfig implements CommandLineRunner {
         denuncia2.setMotivoDenuncia(motivoDenuncia2);
 
         denunciasRepository.saveAll(Arrays.asList(denuncia1, denuncia2));
+
+
+        final Preferencias preferencia1 = new Preferencias();
+        preferencia1.setDatacriacao(LocalDateTime.now());
+        preferencia1.setDistancia(30);
+        preferencia1.setMaxPaginas(400);
+        preferencia1.setIdUsuario(usuario1.getId());
+
+        final Preferencias preferencia2 = new Preferencias();
+        preferencia2.setDatacriacao(LocalDateTime.now());
+        preferencia2.setDistancia(50);
+        preferencia2.setMaxPaginas(550);
+        preferencia2.setIdUsuario(usuario2.getId());
+
+        final Preferencias preferencia3 = new Preferencias();
+        preferencia3.setDatacriacao(LocalDateTime.now());
+        preferencia3.setDistancia(25);
+        preferencia3.setMaxPaginas(200);
+        preferencia3.setIdUsuario(usuario3.getId());
+
+        final Preferencias preferencia4 = new Preferencias();
+        preferencia4.setDatacriacao(LocalDateTime.now());
+        preferencia4.setDistancia(15);
+        preferencia4.setMaxPaginas(150);
+        preferencia4.setIdUsuario(usuario4.getId());
+
+        final Preferencias preferencia5 = new Preferencias();
+        preferencia5.setDatacriacao(LocalDateTime.now());
+        preferencia5.setDistancia(60);
+        preferencia5.setMaxPaginas(390);
+        preferencia5.setIdUsuario(usuario5.getId());
+
+        preferenciasRepository.saveAll(Arrays.asList(preferencia1, preferencia2, preferencia3, preferencia4, preferencia5));
+
+
+        final Avaliacoes avaliacao1 = new Avaliacoes();
+        avaliacao1.setDataCriacao(new Date());
+        avaliacao1.setNota(10);
+        avaliacao1.setDescricaoAvaliacao("Recomendo troca de livro com o usuário Bruce Wayne, o mesmo é pontual e super legal");
+        avaliacao1.setMatchId(1L);
+        avaliacao1.setUsuario(usuario2);
+
+        final Avaliacoes avaliacao2 = new Avaliacoes();
+        avaliacao2.setDataCriacao(new Date());
+        avaliacao2.setNota(9);
+        avaliacao2.setDescricaoAvaliacao("Recomendo troca de livro com a Kara Danvers, ela possui bastante livros de qualidade.");
+        avaliacao2.setMatchId(2L);
+        avaliacao2.setUsuario(usuario3);
+
+        avaliacaoRepository.saveAll(Arrays.asList(avaliacao1, avaliacao2));
 
     }
 }
