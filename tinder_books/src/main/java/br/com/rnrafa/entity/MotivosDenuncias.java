@@ -1,5 +1,6 @@
 package br.com.rnrafa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -25,11 +26,8 @@ public class MotivosDenuncias implements Serializable {
     @Column(name = "motivo_denuncia", nullable = false, length = 100)
     private String descricaoMotivoDenuncia;
 
-    @OneToOne
-    @JoinColumn(name = "id_livros_usuario", referencedColumnName = "id", nullable = false)
-    private LivrosUsuario livroUsuario;
-
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "motivoDenuncia")
+    @JsonIgnore
+    @OneToOne(mappedBy = "motivoDenuncia")
     private Denuncias denuncia;
 
     public Long getId() {
@@ -54,14 +52,6 @@ public class MotivosDenuncias implements Serializable {
 
     public void setDescricaoMotivoDenuncia(String descricaoMotivoDenuncia) {
         this.descricaoMotivoDenuncia = descricaoMotivoDenuncia;
-    }
-
-    public LivrosUsuario getLivroUsuario() {
-        return livroUsuario;
-    }
-
-    public void setLivroUsuario(LivrosUsuario livroUsuario) {
-        this.livroUsuario = livroUsuario;
     }
 
     public Denuncias getDenuncia() {

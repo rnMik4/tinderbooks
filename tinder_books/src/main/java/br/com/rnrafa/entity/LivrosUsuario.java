@@ -48,12 +48,6 @@ public class LivrosUsuario implements Serializable {
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "livroUsuario")
     private MotivosDenuncias motivoDenuncia;
 
-    @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "livroUsuario")
-    private Likes livroUsuario;
-
-
-
     public Long getId() {
         return id;
     }
