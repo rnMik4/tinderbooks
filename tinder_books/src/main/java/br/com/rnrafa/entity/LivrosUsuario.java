@@ -44,9 +44,6 @@ public class LivrosUsuario implements Serializable {
     @JoinColumn(name = "id_usuario", referencedColumnName = "id", nullable = false)
     private Usuarios usuario;
 
-    @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "livroUsuario")
-    private MotivosDenuncias motivoDenuncia;
 
     public Long getId() {
         return id;
@@ -112,13 +109,6 @@ public class LivrosUsuario implements Serializable {
         this.usuario = usuario;
     }
 
-    public MotivosDenuncias getMotivoDenuncia() {
-        return motivoDenuncia;
-    }
-
-    public void setMotivoDenuncia(MotivosDenuncias motivoDenuncia) {
-        this.motivoDenuncia = motivoDenuncia;
-    }
 
     @Override
     public boolean equals(Object o) {
